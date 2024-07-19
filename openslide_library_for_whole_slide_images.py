@@ -74,13 +74,15 @@ print(slide_dims)
 slide_thumb_600 = slide.get_thumbnail(size=(600, 600))
 # slide_thumb_600.show()
 
-dimensions = slide.dimensions
-width, height = dimensions
-
+#----#
 # Read the region (this will read the whole slide at level 0)
-image = slide.read_region((0, 0), 0, dimensions)
+# dimensions = slide.dimensions
+# width, height = dimensions
+# image = slide.read_region((0, 0), 0, dimensions)
+#____#
+
 #Convert thumbnail to numpy array
-slide_thumb_600_np = np.array(image)
+slide_thumb_600_np = np.array(slide_thumb_600)
 plt.figure(figsize=(8,8))
 plt.imshow(slide_thumb_600_np)    
 
@@ -148,7 +150,7 @@ print("Tiles shape at level ", level_num, " is: ", tiles.level_tiles[level_num])
 print("This means there are ", tiles.level_tiles[level_num][0]*tiles.level_tiles[level_num][1], " total tiles in this level")
 
 #Dimensions of the tile (tile size) for a specific tile from a specific layer
-tile_dims = tiles.get_tile_dimensions(11, (3,4)) #Provide deep zoom level and address (column, row)
+# tile_dims = tiles.get_tile_dimensions(11, (3,4)) #Provide deep zoom level and address (column, row)
 
 
 #Tile count at the highest resolution level (level 16 in our tiles)
