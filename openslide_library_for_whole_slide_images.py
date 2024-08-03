@@ -1,24 +1,5 @@
+#pip install openslide-python
 
-"""
-OpenSlide can read virtual slides in several formats:
-
-Aperio (.svs, .tif)
-Hamamatsu (.ndpi, .vms, .vmu)
-Leica (.scn)
-MIRAX (.mrxs)
-Philips (.tiff)
-Sakura (.svslide)
-Trestle (.tif)
-Ventana (.bif, .tif)
-Generic tiled TIFF (.tif)
-
-OpenSlide allows reading a small amount of image data at the resolution 
-closest to a desired zoom level.
-
-pip install openslide-python
-"""
-
-#import pyvips
 from openslide import open_slide
 import openslide
 from PIL import Image
@@ -140,6 +121,8 @@ single_tile_RGB.show()
 
 ###### Saving each tile to local directory
 cols, rows = tiles.level_tiles[16]
+
+#loop that creates a bunch of tiles
 
 # import os
 # tile_dir = "/Users/Mason/Pictures/saved_tiles/original_tiles/"
