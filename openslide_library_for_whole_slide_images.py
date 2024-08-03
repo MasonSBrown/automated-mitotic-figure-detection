@@ -2,8 +2,10 @@
 
 import openslide
 from openslide import open_slide
+from openslide.deepzoom import DeepZoomGenerator
 from PIL import Image
 import numpy as np
+import os
 from matplotlib import pyplot as plt
 
 #Load the slide file (svs) into an object.
@@ -24,7 +26,7 @@ print("The objective power is: ", objective)
 slide_dims = slide.dimensions
 print(slide_dims)
 
-#Get a thumbnail of the image and visualize
+#Get a thumbnail of the image and (on the next line) visualize
 slide_thumb_600 = slide.get_thumbnail(size=(600, 600))
 # slide_thumb_600.show()
 
@@ -37,12 +39,11 @@ slide_thumb_600 = slide.get_thumbnail(size=(600, 600))
 
 #Convert thumbnail to numpy array
 slide_thumb_600_np = np.array(slide_thumb_600)
-plt.figure(figsize=(8,8))
-plt.imshow(slide_thumb_600_np)    
+# plt.figure(figsize=(8,8))
+# plt.imshow(slide_thumb_600_np)    
 
 
-#Get slide dims at each level. Remember that whole slide images store information
-#as pyramid at various levels
+#Get slide dims at each level. Remember that whole slide images store information as pyramid at various levels
 dims = slide.level_dimensions
 
 num_levels = len(dims)
@@ -64,11 +65,13 @@ level3_img = slide.read_region((0,0), 2, level3_dim) #Pillow object, mode=RGBA
 
 #Convert the image to RGB
 level3_img_RGB = level3_img.convert('RGB')
-level3_img_RGB.show()
+
+#Show the image
+# level3_img_RGB.show()
 
 #Convert the image into numpy array for processing
 level3_img_np = np.array(level3_img_RGB)
-plt.imshow(level3_img_np)
+# plt.imshow(level3_img_np)
 
 
 #Return the best level for displaying the given downsample.
@@ -115,16 +118,16 @@ tile_dims = tiles.get_tile_dimensions(16, (120,140))
 tile_dims = tiles.get_tile_dimensions(16, (125,150))
 
 
-single_tile = tiles.get_tile(16, (62, 70)) #Provide deep zoom level and address (column, row)
+single_tile = tiles.get_tile(16, (62, 70)) #Provide deep zoom level and address (column, row) just a random tile here
 single_tile_RGB = single_tile.convert('RGB')
 single_tile_RGB.show()
 
 ###### Saving each tile to local directory
 cols, rows = tiles.level_tiles[16]
 
+
 #loop that creates a bunch of tiles
 
-# import os
 # tile_dir = "/Users/Mason/Pictures/saved_tiles/original_tiles/"
 # for row in range(rows):
 #     for col in range(cols):
