@@ -9,10 +9,9 @@ import os
 from matplotlib import pyplot as plt
 
 #Load the slide file (svs) into an object.
-slide = open_slide("/Users/Mason/Pictures/WholeSlideImages/TUPAC-TR-001 (1).svs")
+slide = open_slide("/Users/Mason/github/MasonSBrown/WSI-normalization-data-augmentation/rawimages/MIDOG2022IMG1")
 
 slide_props = slide.properties
-print(slide_props)
 
 print("Vendor is:", slide_props['openslide.vendor'])
 print("Pixel size of X in um is:", slide_props['openslide.mpp-x'])
@@ -67,7 +66,7 @@ level3_img = slide.read_region((0,0), 2, level3_dim) #Pillow object, mode=RGBA
 level3_img_RGB = level3_img.convert('RGB')
 
 #Show the image
-# level3_img_RGB.show()
+level3_img_RGB.show()
 
 #Convert the image into numpy array for processing
 level3_img_np = np.array(level3_img_RGB)
